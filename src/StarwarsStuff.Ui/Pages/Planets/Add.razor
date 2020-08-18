@@ -1,0 +1,111 @@
+@page "/planets/add"
+
+@using StarwarsStuff.Ui.Models
+@using System.Numerics
+
+@inject NavigationManager navigationManager
+
+<h1>Add Planets</h1>
+<section>
+    <EditForm Model="@Planet" OnValidSubmit="@HandleValidSubmit">
+        <DataAnnotationsValidator/>
+        <ValidationSummary/>
+        <div class="form-group">
+            <label for="name">
+                Name:
+            </label>
+            <InputText id="name"
+                       @bind-Value="@Planet.Name"
+                       class="form-control col-sm-4"
+                       placeholder="Planet Name">
+            </InputText>
+        </div>
+        <div class="form-group">
+            <label for="imageLocation">
+                Image Locataion
+            </label>
+    <InputText id="imageLocation"
+               @bind-Value="@Planet.ImageLocation"
+                       class="form-control col-sm-4"
+                       placeholder="Image Location">
+            </InputText>
+        </div>
+        <div class="form-group">
+            <label for="climate">
+                Climate
+            </label>
+            <InputText id="climate"
+                       @bind-Value="@Planet.Climate"
+                       class="form-control col-sm-4"
+                       placeholder="Climate">
+            </InputText>
+        </div>
+        <div class="form-group">
+            <label for="inhabitants">
+                Inhabitants
+            </label>
+            <InputText id="inhabitants"
+                       @bind-Value="@Planet.Inhabitants"
+                       class="form-control col-sm-4"
+                       placeholder="Inhabitants">
+            </InputText>
+        </div>
+        <div class="form-group">
+            <label for="Sector">
+                Sector
+            </label>
+            <InputText id="sector"
+                       @bind-Value="@Planet.Sector"
+                       class="form-control col-sm-4"
+                       placeholder="Sector">
+            </InputText>
+        </div>
+        <div class="form-group">
+            <label for="system">
+                System
+            </label>
+            <InputText id="system"
+                       @bind-Value="@Planet.System"
+                       class="form-control col-sm-4"
+                       placeholder="System">
+            </InputText>
+        </div>
+        <div class="form-group">
+            <label for="region">
+                Region
+            </label>
+            <InputText id="region"
+                       @bind-Value="@Planet.Region"
+                       class="form-control col-sm-4"
+                       placeholder="Region">
+            </InputText>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary edit-btn">Save</button>
+            <NavLink href="planets" class="btn btn-default edit-btn">
+                Cancel
+            </NavLink>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary edit-btn">Save</button>
+            <NavLink href="planets" class="btn btn-default edit-btn">
+                Cancel
+            </NavLink>
+        </div>
+    </EditForm>
+</section>
+<div class="form-group">
+    <button type="submit" class="btn btn-primary edit-btn">Save</button>
+    <NavLink href="planets" class="btn btn-default edit-btn">
+        Cancel
+    </NavLink>
+</div>
+
+@code {
+    private Planet Planet { get; set; } = new Planet();
+
+    private void HandleValidSubmit()
+    {
+        navigationManager.NavigateTo("planets");
+    }
+}

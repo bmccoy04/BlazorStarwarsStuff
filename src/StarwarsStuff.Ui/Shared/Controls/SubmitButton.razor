@@ -1,0 +1,10 @@
+
+<button @onclick="@(() => OnClick.InvokeAsync(null))">@Title</button>
+
+@code {
+   [Parameter] 
+   public string Title { get; set; } 
+   
+   [Parameter]
+   public EventCallback OnClick { get; set; }
+}
