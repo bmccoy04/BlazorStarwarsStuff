@@ -3,54 +3,75 @@
 <h3>TodoV1</h3>
 
 <h3>Todo (@todos.Count(todo => !todo.IsDone))</h3>
-
-<ul>
-   @foreach (var todo in todos.Where(x => !x.IsDone))
-   {
-      <li>
-         @todo.Title 
-            <button type="button" class="btn btn-primary btn-sm" @onclick="@(() => MarkDone(todo.Title))">chk</button>
-            <button type="button" class="btn btn-danger btn-sm" @onclick="@(() => MarkDone(todo.Title))">x</button>
-      </li>
-   }
+<form>
+    <div class="form-row">
+        <div class="col-sm-3">
+            <input type="text" class="form-control" placeholder="Something Todo" @bind="newTodo"/>
+        </div>
+        <div class="col-auto">
+            <button type="button" class="btn btn-primary" @onclick="AddTodo">Add Todo</button>
+            <button type="button" class="btn btn-default" @onclick="Cancel">Cancel</button>
+        </div>
+    </div>
+</form>
+<br />
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            Todo Item
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var todo in todos.Where(x => !x.IsDone))
+    {
+        <tr>
+            <td>
+                @todo.Title
+            </td>
+            <td style="text-align: right">
+                <button type="button" class="btn btn-primary btn-sm" @onclick="@(() => MarkDone(todo.Title))">chk</button>
+                <button type="button" class="btn btn-danger btn-sm" @onclick="@(() => MarkDone(todo.Title))">x</button>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+<ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
 </ul>
 
-<form>
-   <div class="form-row">
-      <div class="col-sm-3">
-            <input type="text" class="form-control" placeholder="Something Todo" @bind="newTodo"/>
-      </div>
-      <div class="col-auto">
-         <button type="button" class="btn btn-primary" @onclick="AddTodo">Add Todo</button>
-         <button type="button" class="btn btn-default" @onclick="Cancel">Cancel</button>
-      </div>
-   </div>
-</form>
-
 @code {
-   private IList<TodoItem> todos = new List<TodoItem>();
+    private IList<TodoItem> todos = new List<TodoItem>();
 
-   private string newTodo;
+    private string newTodo;
 
-   private void AddTodo()
-   {
-      if (!string.IsNullOrWhiteSpace(newTodo))
-      {
-         todos.Add(new TodoItem() { Title = newTodo });
-         newTodo = string.Empty;
-      }
-   }
+    private void AddTodo()
+    {
+        if (!string.IsNullOrWhiteSpace(newTodo))
+        {
+            todos.Add(new TodoItem() {Title = newTodo});
+            newTodo = string.Empty;
+        }
+    }
 
-   private void Cancel()
-   {
-      newTodo = string.Empty;
-   }
-   
-   private void MarkDone(string title)
-   {
-      var todo = todos.FirstOrDefault(x => x.Title == title && !x.IsDone);
+    private void Cancel()
+    {
+        newTodo = string.Empty;
+    }
 
-      if(todo != null)
-         todo.IsDone = true;
-   }
+    private void MarkDone(string title)
+    {
+        var todo = todos.FirstOrDefault(x => x.Title == title && !x.IsDone);
+
+        if (todo != null)
+            todo.IsDone = true;
+    }
+
 }

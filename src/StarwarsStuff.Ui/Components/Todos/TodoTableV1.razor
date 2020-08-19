@@ -1,0 +1,20 @@
+@using StarwarsStuff.Ui.Models
+
+<table class="table">
+    <TodoTableHeader />
+    <tbody>
+    @foreach (var todo in Todos.Where(x => !x.IsDone))
+    {
+        <TodoTableRow Todo="@todo" MarkDone="@(() => MarkDone.InvokeAsync(todo.Title))" />
+    }
+    </tbody>
+</table>
+
+@code {
+
+    [Parameter]
+    public IList<TodoItem> Todos { get; set; }
+
+    [Parameter]
+    public EventCallback<string> MarkDone { get; set; }
+}

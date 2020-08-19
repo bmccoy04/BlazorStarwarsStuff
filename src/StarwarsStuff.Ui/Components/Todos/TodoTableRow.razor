@@ -1,0 +1,19 @@
+@using StarwarsStuff.Ui.Models
+        <tr>
+            <td>
+                @Todo.Title
+            </td>
+            <td style="text-align: right">
+                <button type="button" class="btn btn-primary btn-sm" @onclick="@(() => MarkDone.InvokeAsync(Todo.Title))">chk</button>
+                <button type="button" class="btn btn-danger btn-sm" @onclick="@(() => MarkDone.InvokeAsync(Todo.Title))">x</button>
+            </td>
+        </tr>
+
+
+@code {
+    [Parameter]
+    public TodoItem Todo { get; set; }
+    
+    [Parameter]
+    public EventCallback<string> MarkDone { get; set; }
+}

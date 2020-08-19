@@ -5,24 +5,24 @@
 
 <h3>Todo (@todos.Count(todo => !todo.IsDone))</h3>
 
-<ul>
-   @foreach (var todo in todos.Where(x => !x.IsDone))
-   {
-      <li>
-         @todo.Title <DeleteButton OnClick="@(() => MarkDone(todo.Title))" Title="Done" />
-      </li>
-   }
+<TodoInputV1 AddTodo="@AddTodo" />
+
+<br />
+
+<TodoTableV1 Todos="todos" MarkDone="@((string x) => MarkDone(x))"></TodoTableV1>
+
+<ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
 </ul>
 
-<input placeholder accept="Someting Todo" @bind="newTodo" />
-<SubmitButton OnClick="@AddTodo" Title="Submit"/>
 
 @code {
    private IList<TodoItem> todos = new List<TodoItem>();
-
-   private string newTodo;
-
-   private void AddTodo()
+   private void AddTodo(string newTodo)
    {
       if (!string.IsNullOrWhiteSpace(newTodo))
       {
