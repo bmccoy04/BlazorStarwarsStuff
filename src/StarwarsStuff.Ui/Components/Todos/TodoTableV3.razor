@@ -1,0 +1,34 @@
+@using StarwarsStuff.Ui.Models
+
+<TableView Data="Todos">
+    <ColumnTemplate>
+        <Column Title="Title" Property="Title"></Column>
+        <ButtonColumn Submit="MarkDone" Delete="Cancel"></ButtonColumn>
+    </ColumnTemplate> 
+</TableView>
+
+@code {
+
+    [Parameter]
+    public IList<TodoItem> Todos { get; set; }
+
+    [Parameter]
+    public EventCallback<string> MarkDone { get; set; }
+    
+// <TableView Data="Todos">
+//     <TableViewHeader>
+//     </TableViewHeader>
+//     <TableViewBody >
+//     </TableViewBody>
+// </TableView>
+        //<TodoTableRow Todo="@todo" MarkDone="@(() => MarkDone.InvokeAsync(todo.Title))"/>
+//     
+// <TableView Data="Todos">
+//     <HeaderTemplate>
+//         <TableViewHeader></TableViewHeader>
+//     </HeaderTemplate>
+//     <BodyTemplate>
+//         <TableViewBody></TableViewBody>
+//     </BodyTemplate>
+// </TableView>
+}

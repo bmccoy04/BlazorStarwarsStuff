@@ -4,8 +4,8 @@
                 @Todo.Title
             </td>
             <td style="text-align: right">
-                <button type="button" class="btn btn-primary btn-sm" @onclick="@(() => MarkDone.InvokeAsync(Todo.Title))">chk</button>
-                <button type="button" class="btn btn-danger btn-sm" @onclick="@(() => MarkDone.InvokeAsync(Todo.Title))">x</button>
+                <SubmitButtonSmall OnClick="MarkDone" Key="Todo.Title" />
+                <DeleteButtonSmall OnClick="MarkDone" Key="Todo.Title" />
             </td>
         </tr>
 

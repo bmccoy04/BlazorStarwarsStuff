@@ -1,15 +1,15 @@
-@page "/TodoV2"
+@page "/TodoV3"
 @using StarwarsStuff.Ui.Models
 
 <h3>TodoV2</h3>
 
 <h3>Todo (@todos.Count(todo => !todo.IsDone))</h3>
 
-<TodoInputV2 AddTodo="@AddTodo" />
+<TodoInputV3 AddTodo="@AddTodo" />
 
 <br />
 
-<TodoTableV2 Todos="todos" MarkDone="@((x) => MarkDone(x))"></TodoTableV2>
+<TodoTableV3 Todos="todos" MarkDone="@((x) => MarkDone(x))"></TodoTableV3>
 
 <Pagination PageLeft="PageLeft" PageRight="PageRight" PageSelected="PageSelected" Data="todos" />
 

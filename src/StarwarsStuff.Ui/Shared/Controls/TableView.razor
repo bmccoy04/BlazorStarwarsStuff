@@ -1,0 +1,15 @@
+@typeparam TItem
+
+<table class="table">
+    Tests
+    @ColumnTemplate
+</table>
+
+
+@code {
+    //[Parameter] public RenderFragment<TItem> ChildContent { get; set; }
+        //@ChildContent(item)
+    [Parameter] public RenderFragment ColumnTemplate { get; set; }
+    
+    [Parameter] public IEnumerable<TItem> Data { get; set; }
+}

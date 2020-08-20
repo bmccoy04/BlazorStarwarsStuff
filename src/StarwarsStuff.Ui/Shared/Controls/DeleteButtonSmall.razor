@@ -1,0 +1,7 @@
+<button type="button" class="btn btn-danger btn-sm" @onclick="@(() => OnClick.InvokeAsync(Key))">X</button>
+
+@code {
+    [Parameter] public EventCallback<string> OnClick { get; set; }
+    
+    [Parameter] public string Key { get; set; }
+}

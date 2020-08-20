@@ -1,0 +1,32 @@
+<form>
+    <div class="form-row">
+        <div class="col-sm-3">
+            <input type="text" class="form-control" placeholder="Something Todo" @bind="newTodo"/>
+        </div>
+        <div class="col-auto">
+            <SubmitButton OnClick="@AddTodoInternal" Title="Add Todo" />
+            <CancelButton OnClick="@Cancel" Title="Cancel" />
+        </div>
+    </div>
+</form>
+
+@code {
+    public string newTodo { get; set; }
+    
+    [Parameter]    
+    public string NewTodo { get; set; }
+    
+    [Parameter]    
+    public EventCallback<string> AddTodo { get; set; }
+
+    public void AddTodoInternal()
+    {
+        AddTodo.InvokeAsync(newTodo);
+        newTodo = string.Empty;
+    }
+
+    public void Cancel()
+    {
+        newTodo = string.Empty;
+    }
+}
