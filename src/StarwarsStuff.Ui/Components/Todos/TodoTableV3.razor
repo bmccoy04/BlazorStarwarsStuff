@@ -1,10 +1,14 @@
 @using StarwarsStuff.Ui.Models
 
-<TableView Data="Todos">
-    <ColumnTemplate>
-        <Column Title="Title" Property="Title"></Column>
-        <ButtonColumn Submit="MarkDone" Delete="Cancel"></ButtonColumn>
-    </ColumnTemplate> 
+<TableView Data="Todos.Where(x => !x.IsDone)" >
+    <TableHeaderTemplate>
+        <TableHeader Title="Title" />
+        <TableHeader />
+    </TableHeaderTemplate>
+    <TableBodyTemplate Context="todoItem">
+        <TableTextColumn Value="@todoItem.Title" />
+        <TableButtonColumn Key="@todoItem.Title" Submit="MarkDone"  />
+    </TableBodyTemplate>
 </TableView>
 
 @code {
@@ -14,21 +18,4 @@
 
     [Parameter]
     public EventCallback<string> MarkDone { get; set; }
-    
-// <TableView Data="Todos">
-//     <TableViewHeader>
-//     </TableViewHeader>
-//     <TableViewBody >
-//     </TableViewBody>
-// </TableView>
-        //<TodoTableRow Todo="@todo" MarkDone="@(() => MarkDone.InvokeAsync(todo.Title))"/>
-//     
-// <TableView Data="Todos">
-//     <HeaderTemplate>
-//         <TableViewHeader></TableViewHeader>
-//     </HeaderTemplate>
-//     <BodyTemplate>
-//         <TableViewBody></TableViewBody>
-//     </BodyTemplate>
-// </TableView>
 }

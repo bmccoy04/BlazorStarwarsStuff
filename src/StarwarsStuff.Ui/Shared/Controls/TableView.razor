@@ -1,15 +1,28 @@
 @typeparam TItem
 
 <table class="table">
-    Tests
-    @ColumnTemplate
+    @TableHeaderTemplate
+    
+    @foreach (var item in Data)
+    {
+        <tr>
+            @TableBodyTemplate(item)
+        </tr>
+    }
+    
 </table>
 
+    @if (ShowPaging)
+    {
+        <Pagination Data="Data"/>
+    }
 
 @code {
-    //[Parameter] public RenderFragment<TItem> ChildContent { get; set; }
-        //@ChildContent(item)
-    [Parameter] public RenderFragment ColumnTemplate { get; set; }
+    [Parameter] public RenderFragment TableHeaderTemplate { get; set; }
+    
+    [Parameter] public RenderFragment<TItem> TableBodyTemplate { get; set; }
     
     [Parameter] public IEnumerable<TItem> Data { get; set; }
+    
+    [Parameter] public bool ShowPaging { get; set; }
 }

@@ -1,0 +1,23 @@
+<td style="text-align: right">
+    @if(Submit.HasDelegate)
+    { 
+        <SubmitButtonSmall OnClick="@(() => Submit.InvokeAsync(Key))"/>
+    }
+    
+    @if (Delete.HasDelegate)
+    {
+        <DeleteButtonSmall OnClick="@(() => Delete.InvokeAsync(Key))"/>
+    }
+</td>
+
+@code {
+    [Parameter]  
+    public string Key { get; set; }
+    
+    [Parameter]
+    public EventCallback<string> Submit { get; set; }
+    
+    [Parameter]
+    public EventCallback<string> Delete { get; set; }
+    
+}

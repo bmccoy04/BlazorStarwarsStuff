@@ -11,9 +11,6 @@
 
 <TodoTableV3 Todos="todos" MarkDone="@((x) => MarkDone(x))"></TodoTableV3>
 
-<Pagination PageLeft="PageLeft" PageRight="PageRight" PageSelected="PageSelected" Data="todos" />
-
-
 @code {
     
    private IList<TodoItem> todos = new List<TodoItem>();
