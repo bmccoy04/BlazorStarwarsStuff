@@ -1,10 +1,10 @@
-@page "/planets/edit"
+@page "/planets/edit/{id:int}"
 
 @using StarwarsStuff.Ui.Models
 
-@inject NavigationManager navigationManager
+@inject NavigationManager NavigationManager
 
-<h1>Add Planets</h1>
+<h1>Edit Planets</h1>
 <section>
     <EditForm Model="@Planet" OnValidSubmit="@HandleValidSubmit">
         <DataAnnotationsValidator/>
@@ -97,11 +97,14 @@
 </section>
 
 @code {
+    
+    [Parameter]
+    public int id { get; set; }
+    
     private Planet Planet { get; set; } = new Planet();
 
     private void HandleValidSubmit()
     {
-        navigationManager.NavigateTo("planets");
+        NavigationManager.NavigateTo("planets");
     }
-
 }

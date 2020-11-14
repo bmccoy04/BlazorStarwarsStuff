@@ -3,11 +3,12 @@
 <TableView Data="Todos.Where(x => !x.IsDone)" >
     <TableHeaderTemplate>
         <TableHeader Title="Title" />
+        <TableHeader Title="two" />
         <TableHeader />
     </TableHeaderTemplate>
     <TableBodyTemplate Context="todoItem">
         <TableTextColumn Value="@todoItem.Title" />
-        <TableButtonColumn Key="@todoItem.Title" Submit="MarkDone"  />
+        <TableButtonColumn Key="@todoItem.Title" Submit="MarkDone" Delete="MarkDone" />
     </TableBodyTemplate>
 </TableView>
 

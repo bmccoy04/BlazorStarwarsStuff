@@ -1,0 +1,63 @@
+@page "/AddEditForm"
+@using StarwarsStuff.Ui.Models
+
+<h3>AddEditForm</h3>
+
+<EditForm Model="@Person" OnValidSubmit="FormSubmitted">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="form-group">
+        <label for="firstname">First Name:</label>
+        <ValidationMessage For=@(() => Person.FirstName)></ValidationMessage>
+        <InputText id="firstname" class="form-control col-sm-4" placeholder="First Name" @bind-Value="Person.FirstName"></InputText>
+    </div>
+    <div class="form-group">
+        <label for="lastname">Last Name:</label>
+        <ValidationMessage For=@(() => Person.LastName)></ValidationMessage>
+        <InputText id="lastname" class="form-control col-sm-4" placeholder="Last Name" @bind-Value="Person.LastName"></InputText>
+    </div>
+    <div class="form-group">
+        <label for="birthdate">Birth Date:</label>
+        <ValidationMessage For=@(() => Person.BirthDate)></ValidationMessage>
+        <InputDate id="birthdate" class="form-control col-sm-4" placeholder="Last Name" TValue="DateTime" @bind-Value="Person.BirthDate"></InputDate>
+    </div>
+    <div class="form-group">
+        <label for="species">Species:</label>
+        <ValidationMessage For=@(() => Person.Species)></ValidationMessage>
+        <InputSelect id="species" class="form-control col-sm-4" TValue="Species" @bind-Value="Person.Species">
+            <option value="@Species.Gungan">Gungan</option>
+            <option value="@Species.Human">Human</option>
+            <option value="@Species.Wookie">Wookie</option>
+        </InputSelect>
+    </div>
+    <div class="form-group">
+        <label for="planetid">Planet Id:</label>
+        <ValidationMessage For=@(() => Person.PlanetId)></ValidationMessage>
+        <InputNumber id="planetid" class="form-control col-sm-4" placeholder="Planet Id" TValue="int" @bind-Value="Person.PlanetId"></InputNumber>
+    </div>
+    <div class="form-group">
+        <label for="ishostile">Is Hostile:</label>
+        <InputCheckbox id="ishostile" class="form-control col-sm-4" @bind-Value="Person.IsHostile"></InputCheckbox>
+    </div>
+    <div class="form-group">
+        <label for="hostilelevel">Hostile Level:</label>
+        <ValidationMessage For=@(() => Person.HostileLevel)></ValidationMessage>
+        <InputNumber id="hostilelevel" class="form-control col-sm-4" placeholder="Planet Id" TValue="int" @bind-Value="Person.HostileLevel"></InputNumber>
+    </div>
+
+    <input type="submit" value="Submit" class="btn btn-primary"/>
+</EditForm>
+
+@code {
+    public Person Person { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        Person = new Person();    
+    }
+
+    void FormSubmitted()
+    {
+    }
+}

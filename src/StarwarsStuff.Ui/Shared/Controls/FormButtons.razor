@@ -1,0 +1,19 @@
+<div class="col-auto">
+    @if (Submit.HasDelegate)
+    {
+        <SubmitButton OnClick="@(() => Submit.InvokeAsync("submit"))" Title="Add Todo"></SubmitButton>
+    }
+
+    @if (Cancel.HasDelegate)
+    {
+        <CancelButton OnClick="@(() => Cancel.InvokeAsync("cancel"))" Title="Cancel"></CancelButton>
+    }
+</div>
+
+@code {
+    [Parameter]    
+    public EventCallback Submit { get; set; }
+    
+    [Parameter]
+    public EventCallback Cancel { get; set; }
+}

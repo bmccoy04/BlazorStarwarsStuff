@@ -3,10 +3,7 @@
         <div class="col-sm-3">
             <input type="text" class="form-control" placeholder="Something Todo" @bind="newTodo"/>
         </div>
-        <div class="col-auto">
-            <SubmitButton OnClick="@AddTodoInternal" Title="Add Todo" />
-            <CancelButton OnClick="@Cancel" Title="Cancel" />
-        </div>
+        <FormButtons Submit="AddTodoInternal" />
     </div>
 </form>
 

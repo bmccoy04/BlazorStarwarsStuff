@@ -19,9 +19,9 @@
     [Parameter]    
     public EventCallback<string> AddTodo { get; set; }
 
-    public void AddTodoInternal()
+    public async void AddTodoInternal()
     {
-        AddTodo.InvokeAsync(newTodo);
+        await AddTodo.InvokeAsync(newTodo);
         newTodo = string.Empty;
     }
 
