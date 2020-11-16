@@ -6,7 +6,14 @@ namespace StarwarsStuff.Con
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var p = new Person(){Name ="Bryan"};
+            p.Name = "James";
+            Console.WriteLine("Hello: " + p.Name);
         }
+    }
+
+    record Person
+    {
+        public string Name { get; set; }
     }
 }
