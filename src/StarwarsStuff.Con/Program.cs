@@ -1,6 +1,9 @@
-﻿using static System.Console;
+﻿using System.Collections.Generic;
+using System.Linq;
+using static System.Console;
 
-PrintName();
+//PrintName();
+PrintCar();
 
 static void PrintName()
 {
@@ -33,11 +36,53 @@ static void PrintName()
     WriteLine(Equals(petOne, petThree));
 }
 
+static void PrintCar()
+{
+    var carOne = new Car("Mustang", new WindShield(32, new Tire(21, "White")), new List<Tire> { new Tire(28, "Black") });
+
+    var carTwo = carOne with 
+    {
+        Model = "Camero",
+        WindShield = carOne.WindShield with
+        {
+            Tire = new Tire(5, "BLue")
+        },
+        Tires = new List<Tire> {carOne.Tires.FirstOrDefault(), new Tire(5, "white")}
+    };
+
+    WriteLine(carTwo.Model);
+    WriteLine(carTwo.WindShield.Size);
+    WriteLine(carTwo.WindShield.Tire.Color);
+    WriteLine(carOne.WindShield.GetTireColor());
+    WriteLine(carTwo.WindShield.GetTireColor());
+    WriteLine(carTwo.Tires.FirstOrDefault().Color);
+    WriteLine(carOne.TireCount());
+    WriteLine(carTwo.TireCount());
+}
 
 class Person
 {
     public string Name { get; init; }
-} 
+}
+
+record Car(string Model, WindShield WindShield, List<Tire> Tires)
+{
+    public int TireCount()
+    {
+        return Tires.Count; 
+    }
+}
+
+record Tire(int Size, string Color);
+
+record WindShield(int Size, Tire Tire)
+{
+    public string GetTireColor()
+    {
+        return Tire.Color; 
+    }
+}
+
 
 // a class that has value like behavior
 record Animal(string Type);
